@@ -1,4 +1,5 @@
-replace github.com/dgzlopes/xk6-redis => github.com/AdolphBox/xk6-redis
+modules github.com/AdolphBox/xk6-redis
+modules github.com/AdolphBox/xk6-redis
 
 go 1.15
 
