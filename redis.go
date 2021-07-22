@@ -72,6 +72,7 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) interface{}{
 			ReportError(err, "Failed to do command")
 		}
 	}
+	_ = val
 	// TODO: Support more types, not only strings.
 	return val
 }
