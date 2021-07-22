@@ -79,3 +79,13 @@ func sayhi(value string) string {
 	val:= "Hello "+value
 	return val
 }
+
+// Set adds a key/value
+func (*REDIS) Set2(client *redis.Client, key string, value interface{}, expiration time.Duration) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	err := client.Set(key, value, expiration*time.Second).Err()
+	if err != nil {
+		ReportError(err, "Failed to set the specified key/value pair")
+	}
+}
+
