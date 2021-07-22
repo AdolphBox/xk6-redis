@@ -54,6 +54,7 @@ func (*REDIS) Del(client *redis.Client, key string) {
 
 // Do runs arbitrary/custom commands
 func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
+	_ = val
 	val, err := client.Do(cmd, key).Result()
 	if err != nil {
 		if err == redis.Nil {
