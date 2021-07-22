@@ -39,7 +39,7 @@ func (*REDIS) Set(client *redis.Client, key string, value interface{}, expiratio
 // HMSet adds a key/value
 func (*REDIS) HMSet(client *redis.Client, key string, fields map[string]interface{}) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
-	err := client.Set(key, fields).Err()
+	err := client.HMSet(key, fields).Err()
 	if err != nil {
 		ReportError(err, "Failed to set the specified key/value pair")
 	}
