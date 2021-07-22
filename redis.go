@@ -73,5 +73,5 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) interface{}{
 		}
 	}
 	// TODO: Support more types, not only strings.
-	return interface{}
+	return val
 }
