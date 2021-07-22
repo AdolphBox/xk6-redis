@@ -77,5 +77,5 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 
 func sayhi(value string) string {
 	val:= "Hello "+value
-	return val.(string)
+	return val
 }
