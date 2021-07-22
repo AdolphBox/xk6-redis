@@ -74,3 +74,8 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 	// TODO: Support more types, not only strings.
 	return val.(string)
 }
+
+func (*REDIS) SayHi(value string) string {
+	val:= "Hello "+value
+	return val.(string)
+}
