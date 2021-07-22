@@ -35,6 +35,16 @@ func (*REDIS) Set(client *redis.Client, key string, value interface{}, expiratio
 	}
 }
 
+
+// HMSet adds a key/value
+func (*REDIS) HMSet(client *redis.Client, key string, fields map[string]interface{}) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	err := client.Set(key, fields).Err()
+	if err != nil {
+		ReportError(err, "Failed to set the specified key/value pair")
+	}
+}
+
 // Get gets a key/value
 func (*REDIS) Get(client *redis.Client, key string) string {
 	val, err := client.Get(key).Result()
@@ -53,7 +63,7 @@ func (*REDIS) Del(client *redis.Client, key string) {
 }
 
 // Do runs arbitrary/custom commands
-func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
+func (*REDIS) Do(client *redis.Client, cmd string, key string){
 	val, err := client.Do(cmd, key).Result()
 	if err != nil {
 		if err == redis.Nil {
@@ -63,5 +73,4 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 		}
 	}
 	// TODO: Support more types, not only strings.
-	return val.(string)
 }
