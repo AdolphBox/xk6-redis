@@ -63,7 +63,7 @@ func (*REDIS) Del(client *redis.Client, key string) {
 }
 
 // Do runs arbitrary/custom commands
-func (*REDIS) Do(client *redis.Client, cmd string, key string) interface{}{
+func (*REDIS) Do(client *redis.Client, cmd string, key string) interface{} {
 	val, err := client.Do(cmd, key).Result()
 	if err != nil {
 		if err == redis.Nil {
@@ -72,7 +72,6 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) interface{}{
 			ReportError(err, "Failed to do command")
 		}
 	}
-	_ = val
 	// TODO: Support more types, not only strings.
 	return val
 }
