@@ -1,4 +1,4 @@
-package redis
+package redis2
 
 import (
 	"time"
