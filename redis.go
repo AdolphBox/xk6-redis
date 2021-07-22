@@ -72,6 +72,7 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 			ReportError(err, "Failed to do command")
 		}
 	}
+	val:=val.(string)
 	// TODO: Support more types, not only strings.
-	return val.(string)
+	return val
 }
