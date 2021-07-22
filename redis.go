@@ -53,7 +53,7 @@ func (*REDIS) Del(client *redis.Client, key string) {
 }
 
 // Do runs arbitrary/custom commands
-func (*REDIS) Do(client *redis.Client, cmd string, key string) int {
+func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 	val, err := client.Do(cmd, key).Result()
 	if err != nil {
 		if err == redis.Nil {
@@ -63,5 +63,5 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) int {
 		}
 	}
 	// TODO: Support more types, not only strings.
-	return val.(int)
+	return val.(string)
 }
