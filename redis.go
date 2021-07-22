@@ -54,7 +54,7 @@ func (*REDIS) Del(client *redis.Client, key string) {
 
 // Do runs arbitrary/custom commands
 func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
-	err := client.Do(cmd, key).Result()
+	val, err := client.Do(cmd, key).Result()
 	if err != nil {
 		if err == redis.Nil {
 			ReportError(err, "Key does not exist")
