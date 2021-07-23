@@ -98,7 +98,7 @@ func (*REDIS) Set2(client *redis.Client, key string,a []string,b []string) {
 // LPushX insert at the top of the key the specified value
 func (*REDIS) LPush(client *redis.Client, key string,value string) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
-	err := client.LPushX(key, value).Err()
+	err := client.LPush(key, value).Err()
 	if err != nil {
 		ReportError(err, "Failed to lpush the value to specified key")
 	}
