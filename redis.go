@@ -106,10 +106,10 @@ func (*REDIS) LPushX(client *redis.Client, key string,value string) {
 
 
 // Expire add the expiration time to the specified key
-func (*REDIS) Expire(client *redis.Client, key string,time int) {
+func (*REDIS) Expire(client *redis.Client, key string,expiration time.Duration) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
 	
-	err := client.Expire(key, time).Err()
+	err := client.Expire(key, expiration*time.Second).Err()
 	if err != nil {
 		ReportError(err, "Failed to set the expiration to specified key")
 	}
