@@ -75,8 +75,8 @@ func (*REDIS) Do(client *redis.Client, cmd string, key string) string {
 	return val.(string)
 }
 // Test Function, returns Hello + string
-func (*REDIS) sayhi(value string) string {
-	val:= "Hello "+value
+func (*REDIS) Sayhi(value string) string {
+	val:= "Hello"
 	return val
 }
 
