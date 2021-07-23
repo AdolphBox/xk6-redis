@@ -35,14 +35,6 @@ func (*REDIS) Set(client *redis.Client, key string, value interface{}, expiratio
 	}
 }
 
-// Set adds a key/value
-func (*REDIS) HMSet(client *redis.Client, key string, fields map[string]interface{}) {
-	// TODO: Make expiration configurable. Or document somewhere the unit.
-	err := client.HMSet(key, fields).Err()
-	if err != nil {
-		ReportError(err, "Failed to set the specified key/value pair")
-	}
-}
 
 // Get gets a key/value
 func (*REDIS) Get(client *redis.Client, key string) string {
@@ -95,8 +87,8 @@ func (*REDIS) Set2(client *redis.Client, key string,a []string,b []string) {
 }
 
 
-// LPushX insert at the top of the key the specified value
-func (*REDIS) LPush(client *redis.Client, key string,values ...interface{}) {
+// Expire add the expiration time to the specified key
+func (*REDIS) Set3(client *redis.Client, key string,values interface{}) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
 	err := client.LPush(key, values).Err()
 	if err != nil {
@@ -104,12 +96,12 @@ func (*REDIS) LPush(client *redis.Client, key string,values ...interface{}) {
 	}
 }
 
-
 // Expire add the expiration time to the specified key
-func (*REDIS) Expire(client *redis.Client, key string,values ...interface{}) {
+func (*REDIS) Expire(client *redis.Client, key string,expiration time.Duration) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
-	err := client.LPush(key, values).Err()
+	
+	err := client.Expire(key, expiration*time.Second).Err()
 	if err != nil {
-		ReportError(err, "Failed to lpush the value to specified key")
+		ReportError(err, "Failed to set the expiration to specified key")
 	}
 }
