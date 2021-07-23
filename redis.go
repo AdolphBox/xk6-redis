@@ -80,10 +80,12 @@ func (*REDIS) Set2(client *redis.Client, key string,a []string,b []string) {
 	for i := 0; i < len(a); i++ {
 		fields[a[i]]=b[i]
 	}
-	err := client.HMSet(key, fields).Err()
-	if err != nil {
-		ReportError(err, "Failed to set the specified key/value pair")
-	}
+	//err := 
+	client.HMSet(key, fields)
+        //.Err()
+	//if err != nil {
+	//	ReportError(err, "Failed to set the specified key/value pair")
+	//}
 }
 
 
