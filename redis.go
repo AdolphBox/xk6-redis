@@ -32,7 +32,7 @@ func (*REDIS) NewClusterClient(addrs []string) *redis.ClusterClient {
 	}*/
 	return redis.NewClusterClient(&redis.ClusterOptions{
         Addrs: addr,
-        Password: password
+        Password: password,
     })
 }
 
