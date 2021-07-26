@@ -26,6 +26,16 @@ func (*REDIS) NewClient(addr string, password string, bd int) *redis.Client {
 	})
 }
 
+func (*REDIS) NewClusterClient(addrs []string) *redis.ClusterClient {
+	/*if addr == "" {
+		addr = "localhost:6379"
+	}*/
+	return redis.NewClusterClient(&redis.ClusterOptions{
+        Addrs: addr,
+        Password: password
+    })
+}
+
 // Set adds a key/value
 func (*REDIS) Set(client *redis.Client, key string, value interface{}, expiration time.Duration) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
