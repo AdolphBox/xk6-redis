@@ -26,7 +26,7 @@ func (*REDIS) NewClient(addr string, password string, bd int) *redis.Client {
 	})
 }
 
-func (*REDIS) NewClusterClient(addrs []string) *redis.ClusterClient {
+func (*REDIS) NewClient2(addrs []string) *redis.ClusterClient {
 	/*if addr == "" {
 		addr = "localhost:6379"
 	}*/
