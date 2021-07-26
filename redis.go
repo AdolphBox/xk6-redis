@@ -45,6 +45,14 @@ func (*REDIS) Set(client *redis.Client, key string, value interface{}, expiratio
 	}
 }
 
+func (*REDIS) Setc(client *redis.ClusterClient, key string, value interface{}, expiration time.Duration) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	err := client.Set(key, value, expiration*time.Second).Err()
+	if err != nil {
+		ReportError(err, "Failed to set the specified key/value pair")
+	}
+}
+
 
 // Get gets a key/value
 func (*REDIS) Get(client *redis.Client, key string) string {
@@ -98,7 +106,7 @@ func (*REDIS) Set2(client *redis.Client, key string,a []string,b []string) {
 	//}
 }
 
-func (*REDIS) Set4(client *redis.ClusterClient, key string,a []string,b []string) {
+func (*REDIS) Set2c(client *redis.ClusterClient, key string,a []string,b []string) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
 	fields := make(map[string]interface{})
 	for i := 0; i < len(a); i++ {
@@ -122,8 +130,25 @@ func (*REDIS) Set3(client *redis.Client, key string,values interface{}) {
 	}
 }
 
+func (*REDIS) Set3c(client *redis.ClusterClient, key string,values interface{}) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	err := client.LPush(key, values).Err()
+	if err != nil {
+		ReportError(err, "Failed to lpush the value to specified key")
+	}
+}
+
 // Expire add the expiration time to the specified key
 func (*REDIS) Expire(client *redis.Client, key string,expiration time.Duration) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	
+	err := client.Expire(key, expiration*time.Second).Err()
+	if err != nil {
+		ReportError(err, "Failed to set the expiration to specified key")
+	}
+}
+
+func (*REDIS) Expirec(client *redis.ClusterClient, key string,expiration time.Duration) {
 	// TODO: Make expiration configurable. Or document somewhere the unit.
 	
 	err := client.Expire(key, expiration*time.Second).Err()
