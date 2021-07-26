@@ -98,6 +98,20 @@ func (*REDIS) Set2(client *redis.Client, key string,a []string,b []string) {
 	//}
 }
 
+func (*REDIS) Set4(client *redis.ClusterClient, key string,a []string,b []string) {
+	// TODO: Make expiration configurable. Or document somewhere the unit.
+	fields := make(map[string]interface{})
+	for i := 0; i < len(a); i++ {
+		fields[a[i]]=b[i]
+	}
+	//err := 
+	client.HMSet(key, fields)
+        //.Err()
+	//if err != nil {
+	//	ReportError(err, "Failed to set the specified key/value pair")
+	//}
+}
+
 
 // Expire add the expiration time to the specified key
 func (*REDIS) Set3(client *redis.Client, key string,values interface{}) {
