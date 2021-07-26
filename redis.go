@@ -31,7 +31,7 @@ func (*REDIS) NewClusterClient(addrs []string) *redis.ClusterClient {
 		addr = "localhost:6379"
 	}*/
 	return redis.NewClusterClient(&redis.ClusterOptions{
-        Addrs: addr,
+        Addrs: addrs,
       //  Password: password,
     })
 }
